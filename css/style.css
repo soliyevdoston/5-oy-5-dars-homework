@@ -80,3 +80,12 @@
 #toastTemplate{
   background-color: rgb(201, 136, 136);
 }
+#form{
+  color: white;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+
+  gap: 10px;
+  margin-bottom: 20px;
+}

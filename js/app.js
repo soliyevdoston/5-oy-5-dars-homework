@@ -1,11 +1,12 @@
 const elCerdTemp = document.getElementById("cardTemp");
 const elParent = document.getElementById("parent");
 const elLoader = document.getElementById("loader");
-const elError = document.getElementById("text-error");
+const elError = document.getElementById("Derror");
 const elLoader1 = document.getElementById("loader-1");
 const elContainer1 = document.getElementById("container-1");
 const elToastContainer = document.getElementById("toastContainer");
 const elTemplateToast = document.getElementById("toastTemplate");
+const elForm = document.getElementById("form");
 
 
 
@@ -60,6 +61,30 @@ function init() {
   });
   }
 
+
+function createCar(car) {
+     fetch(`https://json-api.uz/api/project/fn43/cars`, {
+    method: "POST",
+    
+    headers: {
+      "Content-type": "application/json;",
+  },
+  body: JSON.stringify(car),
+})
+.then((res) => res.json())
+  .then((res) => {
+    toast("Yangi mashina qo‘shildi ✅");
+    elParent.innerHTML="";
+    init(); // qayta render bo‘ladi
+  })
+  .catch(() => toast("Xatolik yuz berdi ❌"));
+}
+
+
+
+
+
+
   init();
 // crud
 
@@ -109,16 +134,61 @@ function ui(cars) {
   });
 }
 
-
+// toast
 function toast(text){
-  const clone = elTemplateToast.cloneNode(true).content;
-  const elCloseButton = clone.querySelector("button");
-  const elMessage=clone.querySelector("p");
-  elMessage.innerText=text;
+const li= document.createElement("li");
+const button=document.createElement("button");
+const p=document.createElement("p");
+const span=document.createElement("span");
+span.style.cssText=`
+display:block;
+transition:width 0.1ms ease;
+position:absolute;
+bottom:0;
+height:2px;
+width:100%;
+background-color:red;`;
+li.style.position="relative";
+li.appendChild(p,);
+li.appendChild(button);
+li.appendChild(span);
+p.innerText=text;
+button.innerText="Yopish";
+button.addEventListener("click",(e)=>{
+  e.target.parentElement.remove();
+});
 
-  elCloseButton.addEventListener("click", (e)=>{
-    e.target.parentElement.remove();
-  });
 
-  elToastContainer.appendChild(clone);
+elForm.addEventListener("submit",(e)=>{
+  e.preventDefault();
+  const formData=new FormData(elForm);
+  const result= {};
+  formData.forEach((value,key)=>{
+    result[key]=value;
+  })
+  createCar(result);
+});
+
+  // setTimeout(()=>{
+  //   li.remove();
+  // },3000);
+
+const id=  setInterval(()=>{
+  const array= span.style.width.split("");
+  array.pop();
+  const num=Number(array.join(""));
+  span.style.width=`${num-1}%`;
+  if(num===0){
+    clearInterval(id);
+    li.remove();
+  }else{
+    span.style.width=`${num-1}%`; 
+  }
+},30);
+
+
+
+
+
+  elToastContainer.appendChild(li);
 }
