@@ -1,0 +1,82 @@
+  body {
+    padding: 30px 30px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url("../images/155630-laferrari-ferrari_f12-spidometr-legkovyye_avtomobili-odometr-3840x2160.jpg") no-repeat center center/cover;
+    }
+    .container {
+     width: 100%;
+     max-width: 1140px;
+     padding-left: 20px;
+     padding-right: 20px;
+     margin-left: auto;
+     margin-right: auto;
+}
+
+    h1{
+        color: white;
+        text-align: center;
+        font-size: 40px;
+        padding-bottom: 20px;
+    }
+ 
+    .card-stil {
+  flex: 1 1 250px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  color: #000;
+}
+
+#parent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 16px;
+}
+.text-error {
+  color: red;
+  border: 1px solid red;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+.card-skeleron{
+  width: 356px;
+  flex: 1 1 250px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.7); 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  color: #000;
+}
+#loader-1{
+  display: none;
+  color: white;
+}
+.js-delete{
+  width: 100px;
+  background-color: red;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+
+}
+.message{
+  border: 1px solid black;
+  padding:5px ;
+ 
+}
+#toastContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+   position: absolute;
+  top: 20px;
+  right: 20px;
+}
+#toastTemplate{
+  background-color: rgb(201, 136, 136);
+}
