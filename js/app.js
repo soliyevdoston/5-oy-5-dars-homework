@@ -13,7 +13,7 @@ const elForm = document.getElementById("form");
 function init() {
     elLoader1.style.display = "block";
   elLoader.classList.remove("hidden");
-  fetch("https://json-api.uz/api/project/fn43/cars")
+  fetch("https://json-api.uz/api/project/fn44/cars")
   .then((res) => res.json())
   .then((res) => {
     ui(res.data);
@@ -36,7 +36,7 @@ function init() {
 
 
   function deleteCar(id) {
-    fetch(`https://json-api.uz/api/project/fn43/cars/${id}`, {
+    fetch(`https://json-api.uz/api/project/fn44/cars/${id}`, {
     method: "DELETE",
   }
     )
@@ -63,11 +63,11 @@ function init() {
 
 
 function createCar(car) {
-     fetch(`https://json-api.uz/api/project/fn43/cars`, {
+     fetch(`https://json-api.uz/api/project/fn44/cars`, {
     method: "POST",
     
     headers: {
-      "Content-type": "application/json;",
+      "Content-Type": "application/json;",
   },
   body: JSON.stringify(car),
 })
@@ -159,19 +159,15 @@ button.addEventListener("click",(e)=>{
 });
 
 
-elForm.addEventListener("submit",(e)=>{
-  e.preventDefault();
-  const formData=new FormData(elForm);
-  const result= {};
-  formData.forEach((value,key)=>{
-    result[key]=value;
-  })
-  createCar(result);
-});
+
 
   // setTimeout(()=>{
   //   li.remove();
   // },3000);
+
+
+
+
 
 const id=  setInterval(()=>{
   const array= span.style.width.split("");
@@ -192,3 +188,13 @@ const id=  setInterval(()=>{
 
   elToastContainer.appendChild(li);
 }
+
+elForm.addEventListener("submit",(e)=>{
+  e.preventDefault();
+  const formData=new FormData(elForm);
+  const result= {};
+  formData.forEach((value,key)=>{
+    result[key]=value;
+  });
+  createCar(result);
+});
